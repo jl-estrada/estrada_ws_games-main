@@ -12,11 +12,31 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($platform_users as $platUsers)
+            @foreach ($users as $user)
                 <tr>
                     <td>{{ $platUsers -> username }}</td>
                     <td>{{ $platUsers -> created_at }}</td>
                     <td>{{ $platUsers -> last_login }}</td>
+                    <td><a href= {{url('admin/users/' . $user->username) }}>View Profile</a></td>
+                </tr>
+            @endforeach
+        </tbody>
+
+         <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Author</th>
+                <th>Created at</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($games as $game)
+                <tr>
+                    <td>{{ $game -> title }}</td>
+                    <td>{{ $game -> description }}</td>
+                    <td>{{ $game -> author -> username }}</td>
+                    <td>{{ $game -> created_at }}</td>
                 </tr>
             @endforeach
         </tbody>

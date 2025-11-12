@@ -1,6 +1,6 @@
 <x-layout> 
     <x-slot:subtitle>
-        Platform user
+        {{ $user->username }}
     </x-slot:subtitle>
-    <h2>Platform user</h2>
+    <h2>{{ $user->username }}</h2>
 </x-layout>

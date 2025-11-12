@@ -50,5 +50,8 @@ class User extends Authenticatable
 
 class Users extends Model
 {
-    //no created at and updated_at timestamps
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 }

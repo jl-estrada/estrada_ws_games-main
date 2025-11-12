@@ -35,3 +35,5 @@ Route::put('/admin/users/{username}/block',function($username){
 Route::delete('/admin/games/{slug}',function($game){
     return "<h1>Deleting Game...</h1>";
 });
+//user profile
+Route::get('/users/{user}', [UserController::class,'show']);

@@ -11,4 +11,9 @@ class UserController extends Controller
         $platform_users = User::all();
         return view('admin.users.index',compact('platform_users'));
     }
+
+    public function show($user){
+        return view ('admin.users.show', compact('user'));
+    }
 }
+
