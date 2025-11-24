@@ -21,4 +21,15 @@ class games extends Model
         return $this->hasMany(Games::class, 'author_id');
 
     }
+
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+        
+    }
+
+    public function playedGames()
+    {
+        return $this->belongsToMany(Game::class, 'scores');
+    }
 }

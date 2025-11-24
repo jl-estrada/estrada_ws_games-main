@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GamesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,3 +38,32 @@ Route::delete('/admin/games/{slug}',function($game){
 });
 //user profile
 Route::get('/users/{user}', [UserController::class,'show']);
+//needs to import user class at the top
+Route::get('test', function(){
+    return User::all();
+});
+
+
+
+
+//to find user with id 1
+Route::get('test', function(){
+    return User::find(1);
+});
+
+
+//usrs that are not blocked
+Route::get('test', function(){
+    return User::where('is_blocked', 0)->get();
+});
+
+//users verified after a date
+Route::get('test', function(){
+    return User::where("email_verified_at", ">", "2024-05-05 12:00:00")->get();
+});
+
+//users with id 1,2,3
+Route::get('test', function(){
+    return User::whereIn('id', [1,2,3])->get();
+});
+
