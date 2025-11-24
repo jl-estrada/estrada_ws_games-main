@@ -42,6 +42,13 @@ Route::get('/users/{user}', [UserController::class,'show']);
 Route::get('test', function(){
     return User::all();
 });
+//get all games
+Route::get('test', function(){
+    return User::with('playedGames')->get();
+}); 
+//delete games
+Route::delete('/admin/games/{games}', [GamesController::class,'destroy']);
+
 
 
 

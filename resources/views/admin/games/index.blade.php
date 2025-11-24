@@ -3,6 +3,10 @@
         Games
     </x-slot:subtitle>
     <h2>Games</h2>
+    <form method="GET" action="url('admin/games')">
+        <input type="search" name="search" placeholder="Search games..." value="{{ request('search') }}">
+        <button type="submit">Search</button>
+    </form>
     <table id="usersTbl">
         <thead>
             <tr>
@@ -23,4 +27,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $games->links()}}
 </x-layout>

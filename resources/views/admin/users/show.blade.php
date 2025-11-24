@@ -21,6 +21,8 @@
             <div>
                 <h4>{{ $game->title }}</h4>
                 <p>{{ $game->description }}</p>
+                <p>Highest Score: 
+                {{ $game->pivot->times_played }}</p>
             </div>
         @endforeach
         @endif

@@ -42,4 +42,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $platform_users->links()}}
 </x-layout>
