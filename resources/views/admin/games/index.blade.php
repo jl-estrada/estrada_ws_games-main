@@ -1,8 +1,13 @@
 <x-layout> 
     <x-slot:subtitle>
-        Games
+        
     </x-slot:subtitle>
     <h2>Games</h2>
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
     <form method="GET" action="url('admin/games')">
         <input type="search" name="search" placeholder="Search games..." value="{{ request('search') }}">
         <button type="submit">Search</button>
