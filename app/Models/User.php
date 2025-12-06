@@ -46,12 +46,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-}
-
-class Users extends Model
-{
-    public function getRouteKeyName()
+    
+    public function playedGames()
     {
-        return 'username';
+        return $this->belongsToMany(games::class, 'scores')
+                    ->withPivot('id', 'score', 'timestamp')
+                    ->whereIn('scores.id', function ($query) {
+                        $query->selectRaw('MAX(id)')
+                              ->from('scores')
+                              ->where('user_id', $this->id)
+                              ->groupBy('game_id');
+                    });
     }
 }

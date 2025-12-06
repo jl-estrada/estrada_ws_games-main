@@ -8,7 +8,8 @@
             <tr>
                 <th>Username</th>
                 <th>Registered at</th>
-                <th>Last Login</th>
+                <th>Last login</th>
+                <th>Profile</th>
             </tr>
         </thead>
         <tbody>
@@ -41,4 +42,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $platform_users->links()}}
 </x-layout>

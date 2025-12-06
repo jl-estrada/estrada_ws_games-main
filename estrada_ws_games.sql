@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2025 at 09:35 AM
+-- Generation Time: Nov 19, 2025 at 11:15 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `delprado_ws_games`
+-- Database: `estrada_ws_games`
 --
 
 -- --------------------------------------------------------
@@ -204,6 +204,36 @@ CREATE TABLE `password_reset_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `scores`
+--
+
+CREATE TABLE `scores` (
+  `id` bigint(20) NOT NULL,
+  `user_Id` bigint(20) UNSIGNED NOT NULL,
+  `game_id` bigint(20) UNSIGNED NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `score` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `scores`
+--
+
+INSERT INTO `scores` (`id`, `user_Id`, `game_id`, `timestamp`, `score`) VALUES
+(1, 1, 1, '2025-11-19 08:43:23', 20),
+(2, 2, 2, '2025-11-19 08:45:09', 300),
+(3, 3, 3, '2025-11-19 08:45:09', 50),
+(4, 4, 4, '2025-11-19 08:46:12', 800),
+(5, 5, 5, '2025-11-19 08:48:07', 5000),
+(10, 6, 6, '2025-11-19 08:49:54', 5000),
+(11, 7, 7, '2025-11-19 08:49:54', 900),
+(12, 8, 8, '2025-11-19 08:49:54', 2000),
+(13, 9, 9, '2025-11-19 08:49:54', 5100),
+(14, 10, 10, '2025-11-19 08:49:54', 6000);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sessions`
 --
 
@@ -323,6 +353,14 @@ ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
+-- Indexes for table `scores`
+--
+ALTER TABLE `scores`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `game_idfk` (`game_id`),
+  ADD KEY `user_idfk` (`user_Id`);
+
+--
 -- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
@@ -372,6 +410,12 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `scores`
+--
+ALTER TABLE `scores`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -386,6 +430,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `games`
   ADD CONSTRAINT `games_users_fk1` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `scores`
+--
+ALTER TABLE `scores`
+  ADD CONSTRAINT `game_idfk` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`),
+  ADD CONSTRAINT `user_idfk` FOREIGN KEY (`user_Id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
